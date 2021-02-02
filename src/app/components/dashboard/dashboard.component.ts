@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { AuthService } from "../../shared/services/auth.service";
 import { Router } from "@angular/router";
+import { Board } from "../../../board.js"
 
 
 @Component({
@@ -16,6 +17,11 @@ export class DashboardComponent implements OnInit {
     public ngZone: NgZone
   ) { }
 
-  ngOnInit() { }
+  ngOnInit() {
+    const board = new Board({ id: "app" })
+    board.on('change', (data) => {
+      // do something interesting！
+    })
+  }
 
 }

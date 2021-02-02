@@ -11,7 +11,7 @@ import Polygon from './tools/polygon'
 import Text from './tools/text'
 import Image from './tools/image'
 
-export default class Board {
+export class Board {
   constructor ({id = '', background = '#fff', size = 2, color = '#F35453'} = {}) {
     let container = document.getElementById(id)
     let canvas = document.createElement('canvas')
