@@ -12,7 +12,7 @@ import Text from './tools/text'
 import Image from './tools/image'
 
 export class Board {
-  constructor ({id = '', background = '#fff', size = 2, color = '#F35453'} = {}) {
+  constructor ({id = '', background = '#fff', size = 5, color = '#F35453'} = {}) {
     let container = document.getElementById(id)
     let canvas = document.createElement('canvas')
     const fn = (e) => {
