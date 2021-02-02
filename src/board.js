@@ -33,8 +33,8 @@ export class Board {
     }, false)
 
     this.id = id
-    this.width = canvas.width
-    this.height = canvas.height
+    this.width = canvas.width - 10
+    this.height = canvas.height - 10
     this.canvas = canvas
     this.dpr = dpr
     // 画布属性
