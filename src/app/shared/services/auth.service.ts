@@ -9,6 +9,7 @@ import { Router } from "@angular/router";
   providedIn: 'root'
 })
 
+
 export class AuthService {
   userData: any; // Save logged in user data
   afAuth: any;
@@ -30,6 +31,23 @@ export class AuthService {
         JSON.parse(localStorage.getItem('user'));
       }
     })
+  }
+
+
+  SaveCanvas(data){
+    if(isJson(data)){
+      firebase.database().ref(this.userData.uid).set(data);
+    }
+  }
+  async LoadCanvas(){
+    var user = firebase.auth().currentUser;
+    const snapshot = await firebase.database().ref(user.uid).once('value');
+    const data = snapshot.val();
+    if(isJson(data)){
+      return data;
+    }else{
+      JSON.stringify({'base64': data});
+    }
   }
 
   // Sign in with email/password
@@ -126,4 +144,13 @@ export class AuthService {
     })
   }
 
+}
+
+function isJson(str) {
+  try {
+      JSON.parse(str);
+  } catch (e) {
+      return false;
+  }
+  return true;
 }

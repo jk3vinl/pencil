@@ -2,7 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
 // Reactive Form
-import { ReactiveFormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 
 // App routing modules
 import { AppRoutingModule } from './shared/routing/app-routing.module';
@@ -23,8 +23,18 @@ import { environment } from '../environments/environment';
 
 // Auth service
 import { AuthService } from "./shared/services/auth.service";
-import { CanvasComponent } from './canvas/canvas.component';
 
+import {MatIconModule} from '@angular/material/icon';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { PaintComponent } from './paint/paint.component';
+import { FabricCanvasComponent } from './paint/fabric-canvas/fabric-canvas.component';
+import { GraphicalToolbarComponent } from './paint/toolbar/toolbar.component';
+import { ColourPaletteComponent } from './paint/toolbar/colour-palette/colour-palette.component';
+import { ThicknessSliderComponent } from './paint/toolbar/thickness-slider/thickness-slider.component';
+import { InputsModule,SliderModule } from '@progress/kendo-angular-inputs';
+import { EventHandlerService } from './paint/event-handler.service';
+import { FabricShapeService } from './paint/shape.service';
 
 @NgModule({
   declarations: [
@@ -34,7 +44,11 @@ import { CanvasComponent } from './canvas/canvas.component';
     DashboardComponent,
     ForgotPasswordComponent,
     VerifyEmailComponent,
-    CanvasComponent
+    PaintComponent,
+    FabricCanvasComponent,
+    GraphicalToolbarComponent,
+    ColourPaletteComponent,
+    ThicknessSliderComponent,
   ],
   imports: [
     BrowserModule,
@@ -42,9 +56,14 @@ import { CanvasComponent } from './canvas/canvas.component';
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule,
+    MatIconModule,
+    BrowserAnimationsModule,
+    InputsModule,
+    SliderModule,
   ],
-  providers: [AuthService],
+  providers: [AuthService,EventHandlerService, FabricShapeService],
   bootstrap: [AppComponent]
 })
 
