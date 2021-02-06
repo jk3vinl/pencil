@@ -1,5 +1,7 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from "../../shared/services/auth.service";
+import * as firebase from 'firebase'
 
 @Component({
   selector: 'app-sign-in',
@@ -10,9 +12,17 @@ import { AuthService } from "../../shared/services/auth.service";
 export class SignInComponent implements OnInit {
 
   constructor(
-    public authService: AuthService
+    public authService: AuthService,
+    public router: Router
   ) { }
 
-  ngOnInit() { }
+
+  ngOnInit() {
+    firebase.auth().onAuthStateChanged(user=>{
+      if(user){
+        this.router.navigate(['dashboard']);
+      }
+    })
+  }
 
 }
